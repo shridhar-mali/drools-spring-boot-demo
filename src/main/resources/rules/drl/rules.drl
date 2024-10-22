@@ -1,0 +1,18 @@
+package rules.drl;
+import org.apache.logging.log4j.Logger;
+import com.shridhar.model.Request;
+import com.shridhar.model.Response;
+global Logger logger;
+	agenda-group "simpleObject-in-drl"
+rule "DRL Rule 1"
+	when
+		response:Response()
+		request:Request(request.getId() == 1, request.getName() == "name1")
+	then
+	    int outputValue = 5;
+		logger.info("response before setting output value: {}", response);
+		logger.info("response: {}", response);
+		logger.info("output value: {}", outputValue);
+		response.setValue(outputValue);
+		logger.info("response after setting output value: {}", response);
+end
